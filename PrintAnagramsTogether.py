@@ -58,9 +58,8 @@ class Solution:
 
         i = 1
 
-        while(i < n):
-            for ana in anagrams:
-                
+       
+
         
 
 
@@ -77,6 +76,8 @@ def main():
     anagrams[0].append(arr[0])
 
     print(anagrams)
+
+    print("just test git")
     
 
 main()
