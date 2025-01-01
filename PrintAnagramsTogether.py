@@ -30,16 +30,9 @@ Constraints:
 
 """
 
-class Solution:
-    
-    def is_anagram(word1, word2):
-        word1 =  sorted(word1)
-        word2 = sorted(word2)
+from collections import defaultdict
 
-        if word1 == word2:
-            return True
-        else:
-            return False
+class Solution:
 
     def anagrams(self, arr):
         '''
@@ -50,13 +43,20 @@ class Solution:
     
         #code here
 
-        n =  len(arr)
-        anagrams = [[]*n]
-        anagrams[0].append(arr[0])
+        anagram_dict = defaultdict(list)
 
-        print(anagrams)
+        for word in arr:
+            sorted_word = "".join(sorted(word))
+            anagram_dict[sorted_word].append(word)
 
-        i = 1
+        result = []
+
+        for group in anagram_dict.values():
+            result.append(group)
+
+        return result
+
+    
 
        
 
@@ -68,16 +68,10 @@ class Solution:
 def main():
     arr = ["act", "god", "cat", "dog", "tac"]
     
-    print(arr)
+    solution = Solution()
 
-    n =  len(arr)
-    anagrams = [[]*n]
-    print(anagrams)
-    anagrams[0].append(arr[0])
+    result = solution.anagrams(arr)
 
-    print(anagrams)
-
-    print("just test git")
-    
+    print(result)
 
 main()
