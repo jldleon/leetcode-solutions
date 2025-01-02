@@ -25,15 +25,25 @@ Constraints:
 
 class Solution:
     def countSubarrays(self, arr, k):
-        # code here
-        count = 0
+        count = 0                   # Contador de subarreglos
+        current_sum = 0             # Suma acumulada
+        prefix_sums = {0: 1}        # Diccionario con la suma acumulada inicial (caso base)
+
+        for num in arr:             # Iteramos sobre los elementos del arreglo
+            current_sum += num      # Actualizamos la suma acumulada
+            
+            # Verificamos si existe un subarreglo con suma k
+            if current_sum - k in prefix_sums:
+                count += prefix_sums[current_sum - k]  # Sumamos las ocurrencias previas
+
+            # Actualizamos el diccionario con la suma acumulada actual
+            if current_sum in prefix_sums:
+                prefix_sums[current_sum] += 1
+            else:
+                prefix_sums[current_sum] = 1
         
-        for i in range(0, len(arr)):
-            for j in range(i + 1, len(arr)):
-                if (sum(arr[i:j + 1]) == k):
-                    count += 1
-        
-        return count
+        return count                # Devolvemos el número total de subarreglos
+
                 
 def main():
     arr = [9, 4, 20, 3, 10, 5]
